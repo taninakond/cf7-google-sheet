@@ -1,0 +1,473 @@
+:root {
+  --bdp-primary: #97e2ff;
+  --bdp-white: #fff;
+  --bdp-gray: #e0e5ec;
+  --bdp-black1: #222;
+  --bdp-black2: #999;
+  --bdp-navbar-width: 250px;
+}
+
+.toplevel_page_my-react-admin div#wpcontent {
+  padding-left: 0;
+}
+
+.folded .bdp-container {
+  width: calc(100% - 36px);
+}
+
+.bdp-container {
+  position: relative;
+  width: calc(100% - 160px);
+  height: calc(100vh - 32px);
+  position: fixed;
+  top: 32px;
+}
+.bdp-container * {
+  box-sizing: border-box;
+}
+.bdp-container .bdp-button {
+  background: var(--bdp-primary);
+  border: none;
+  color: var(--bdp-white);
+  padding: 10px 30px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+.bdp-container .bdp-button:hover {
+  background: var(--bdp-gray);
+}
+.bdp-container .bdp-button.bdp-button-primary {
+  background: var(--bdp-primary);
+}
+.bdp-container .bdp-button.bdp-button-secondary {
+  background: var(--bdp-gray);
+}
+.bdp-container .bdp-button.bdp-button-danger {
+  background: #ff0000;
+}
+.bdp-container .bdp-button.bdp-button-success {
+  background: #00ff00;
+}
+.bdp-container .bdp-button.bdp-button-warning {
+  background: #ffff00;
+}
+.bdp-container .bdp-button.bdp-button-info {
+  background: #0000ff;
+}
+.bdp-container .bdp-button.bdp-button-link {
+  background: transparent;
+  color: var(--bdp-primary);
+  text-decoration: underline;
+}
+.bdp-container .bdp-button.bdp-button-disabled {
+  background: var(--bdp-gray);
+  color: var(--bdp-black2);
+  cursor: not-allowed;
+}
+.bdp-container .bdp-button.bdp-button-disabled:hover {
+  background: var(--bdp-gray);
+}
+.bdp-container .bdp-button.bdp-button-gradient {
+  background-color: #161a20;
+  border: none;
+  color: #f0f0f0;
+  border-radius: 1000px;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: all 0.2s ease-in-out;
+}
+.bdp-container .bdp-button.bdp-button-gradient::after {
+  content: "";
+  position: absolute;
+  height: calc(100% + 4px);
+  width: calc(100% + 4px);
+  border-radius: 1000px;
+  background-image: linear-gradient(to bottom right, #008cff, #e100ff);
+  z-index: -1;
+}
+.bdp-container .bdp-button.bdp-button-gradient:hover {
+  cursor: pointer;
+  z-index: 0;
+  box-shadow: 10px 0 100px rgba(0, 140, 255, 0.5215686275), -10px 0 100px rgba(225, 0, 255, 0.7333333333);
+}
+.bdp-container .bdp-button.bdp-button-gradient[disabled] {
+  opacity: 0.5;
+  background-color: #161a20;
+  color: #f0f0f0;
+  cursor: not-allowed;
+}
+.bdp-container .bdp-switch {
+  display: flex;
+  align-items: center;
+}
+.bdp-container .bdp-switch .bdp-switch-label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  width: 200px;
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input .bdp-slider {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: 0.4s;
+  box-shadow: inset -4px -4px 6px #fff, inset 4px 4px 6px #c1c6ce;
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input .bdp-slider::before {
+  content: "";
+  position: absolute;
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 5px;
+  background-color: #f5f5f5;
+  border-radius: 50%;
+  transition: 0.4s;
+  box-shadow: 4px 4px 10px rgba(64, 64, 64, 0.1294117647), -4px -4px 10px rgba(64, 64, 64, 0.1294117647);
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input .bdp-slider.bdp-switch-active {
+  background-color: #4caf50;
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input .bdp-slider.bdp-switch-active::before {
+  transform: translateX(26px);
+}
+.bdp-container .bdp-switch .bdp-switch-wrapper .bdp-switch-input .bdp-slider.bdp-switch-inactive {
+  background-color: #ff594e;
+}
+.bdp-container .bdp-select-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bdp-container .bdp-select-wrapper .bdp-select-label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  width: 150px;
+}
+.bdp-container .bdp-select-wrapper .bdp-select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=US-ASCII,%3Csvg%20viewBox%3D%270%200%2010%205%27%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%3E%3Cpath%20d%3D%22M0%200l5%205%205-5z%22%20fill%3D%22%23666%22/%3E%3C/svg%3E") !important;
+  background-repeat: no-repeat !important;
+  background-position: right 12px center !important;
+  background-size: 12px !important;
+  width: 100%;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #e0e5ec;
+  box-shadow: inset 6px 6px 12px #c3c8d1, inset -6px -6px 12px #ffffff;
+  font-size: 16px;
+  color: #333;
+  transition: 0.2s;
+}
+.bdp-container .bdp-input-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bdp-container .bdp-input-wrapper .bdp-input-label {
+  font-weight: 600;
+  color: #333;
+  display: block;
+  width: 150px;
+}
+.bdp-container .bdp-input-wrapper .bdp-input {
+  width: 100%;
+  max-width: 400px;
+  padding: 5px 15px;
+  border: none;
+  border-radius: 10px;
+  background: #e0e5ec;
+  box-shadow: inset 6px 6px 12px #c3c8d1, inset -6px -6px 12px #ffffff;
+  font-size: 16px;
+  color: #333;
+  transition: 0.2s;
+}
+.bdp-container .bdp-input-wrapper .bdp-input.bdp-input-textarea {
+  min-height: 100px;
+}
+.bdp-container .bdp-navigation {
+  position: fixed;
+  width: var(--bdp-navbar-width);
+  height: 100%;
+  background: var(--bdp-primary);
+  border-left: 10px solid var(--bdp-primary);
+  transition: 0.5s;
+  overflow: hidden;
+}
+.bdp-container .bdp-navigation.active {
+  width: 80px;
+}
+.bdp-container .bdp-navigation ul {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  margin-top: 0;
+}
+.bdp-container .bdp-navigation ul li {
+  position: relative;
+  width: 100%;
+  list-style: none;
+  border-top-left-radius: 30px;
+  border-bottom-left-radius: 30px;
+  display: flex;
+  color: var(--black1);
+  cursor: pointer;
+}
+.bdp-container .bdp-navigation ul li.active, .bdp-container .bdp-navigation ul li:hover {
+  background-color: var(--bdp-gray);
+}
+.bdp-container .bdp-navigation ul li.active svg, .bdp-container .bdp-navigation ul li:hover svg {
+  fill: var(--bdp-primary);
+}
+.bdp-container .bdp-navigation ul li.active::after, .bdp-container .bdp-navigation ul li.active::before, .bdp-container .bdp-navigation ul li:hover::after, .bdp-container .bdp-navigation ul li:hover::before {
+  content: "";
+  position: absolute;
+  right: 0px;
+  width: 50px;
+  height: 50px;
+  background-color: transparent;
+  border-radius: 50%;
+  pointer-events: none;
+}
+.bdp-container .bdp-navigation ul li.active:before, .bdp-container .bdp-navigation ul li:hover:before {
+  top: -50px;
+  box-shadow: 35px 35px 0 10px var(--bdp-gray);
+}
+.bdp-container .bdp-navigation ul li.active:after, .bdp-container .bdp-navigation ul li:hover:after {
+  bottom: -50px;
+  box-shadow: 35px -35px 0 10px var(--bdp-gray);
+}
+.bdp-container .bdp-navigation ul li:nth-child(1) {
+  margin-bottom: 40px;
+  pointer-events: none;
+}
+.bdp-container .bdp-navigation ul li:nth-child(1) .bdp-title {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.bdp-container .bdp-navigation ul li .bdp-icon {
+  position: relative;
+  display: block;
+  min-width: 60px;
+  height: 60px;
+  line-height: 75px;
+  text-align: center;
+}
+.bdp-container .bdp-navigation ul li .bdp-icon svg {
+  font-size: 1.75em;
+  fill: var(--black1);
+}
+.bdp-container .bdp-navigation ul li .bdp-title {
+  position: relative;
+  display: block;
+  padding: 0 10px;
+  height: 60px;
+  line-height: 60px;
+  text-align: start;
+  white-space: nowrap;
+  font-weight: 500;
+}
+.bdp-container .bdp-main {
+  position: absolute;
+  left: var(--bdp-navbar-width);
+  background: var(--bdp-primary);
+  transition: 0.5s;
+  width: calc(100% - var(--bdp-navbar-width));
+  height: calc(100vh - 32px);
+}
+.bdp-container .bdp-main.active {
+  width: calc(100% - 80px);
+  left: 80px;
+}
+.bdp-container .bdp-main .bdp-topbar {
+  width: 100%;
+  height: 60px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: var(--bdp-primary);
+  position: sticky;
+  top: 32px;
+  padding-right: 30px;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-left {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding-left: 20px;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-left .bdp-toggle {
+  position: relative;
+  width: 60px;
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 2.5em;
+  cursor: pointer;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-left .bdp-page-title {
+  font-size: 1.5em;
+  font-weight: 700;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right .bdp-save-button {
+  z-index: 0;
+  border: none;
+  outline: none;
+  color: #000000;
+  cursor: pointer;
+  font-weight: 600;
+  padding: 8px 40px;
+  position: relative;
+  border-radius: 12px;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right .bdp-save-button::after {
+  content: "";
+  z-index: -1;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: #e0e5ec;
+  left: 0;
+  top: 0;
+  border-radius: 10px;
+  opacity: 1;
+  transition: opacity 0.5s;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right .bdp-save-button::before {
+  content: "";
+  background: linear-gradient(45deg, #ff0000, #ff7300, #fffb00, #48ff00, #00ffd5, #002bff, #7a00ff, #ff00c8);
+  top: -2px;
+  left: -2px;
+  z-index: -1;
+  filter: blur(8px);
+  position: absolute;
+  background-size: 600%;
+  width: calc(100% + 2px);
+  height: calc(100% + 2px);
+  animation: glowing 20s linear infinite;
+  transition: opacity 0.3s ease-in-out;
+  border-radius: 10px;
+  opacity: 1;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right .bdp-save-button:hover::before {
+  opacity: 1;
+}
+.bdp-container .bdp-main .bdp-topbar .bdp-topbar-right .bdp-save-button:hover::after {
+  background: transparent;
+}
+@keyframes glowing {
+  0% {
+    background-position: 0 0;
+  }
+  50% {
+    background-position: 400% 0;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+.bdp-container .bdp-main .bdp-content {
+  position: relative;
+  z-index: 9;
+  padding: 20px 10px 20px 20px;
+  height: calc(100% - 80px);
+  background: var(--bdp-gray);
+  border-radius: 20px;
+  margin-right: 20px;
+}
+.bdp-container .bdp-main .bdp-content .bdp-tabbar {
+  position: sticky;
+  top: 0;
+  background: #b4eaff;
+  padding: 2px;
+  border-radius: 5px;
+  margin-bottom: 10px;
+}
+.bdp-container .bdp-main .bdp-content .bdp-tabbar .tabbar-items {
+  position: relative;
+  display: inline-flex;
+  padding: 5px;
+  gap: 10px;
+  border-radius: 5px;
+}
+.bdp-container .bdp-main .bdp-content .bdp-tabbar .tabbar-items .tabbar-item {
+  padding: 6px 15px;
+  background: #d4f3ff;
+  width: 100px;
+  text-align: center;
+  border-radius: 5px;
+  cursor: pointer;
+}
+.bdp-container .bdp-main .bdp-content .bdp-tabbar .tabbar-items .tabbar-item.active {
+  background: #fff;
+}
+.bdp-container .bdp-main .bdp-content .bdp-content-box {
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  scroll-behavior: smooth;
+  scrollbar-width: thin;
+  position: relative;
+}
+.bdp-container .bdp-main .bdp-content .bdp-content-box .bdp-section-wrapper {
+  padding: 20px;
+}
+.bdp-container .bdp-main .bdp-content .bdp-content-box .bdp-section-wrapper .bdp-section {
+  background: #e0e5ec;
+  padding: 30px;
+  border-radius: 20px;
+  box-shadow: 5px 5px 15px rgba(205, 209, 217, 0.6588235294), -5px -5px 15px rgba(255, 255, 255, 0.5607843137);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* responsive */
+@media (max-width: 991px) {
+  .bdp-container .bdp-navigation {
+    left: -300px;
+  }
+  .bdp-container .bdp-navigation.active {
+    width: 300px;
+    left: 0;
+  }
+  .bdp-container .bdp-main {
+    width: 100%;
+    left: 0;
+  }
+  .bdp-container .bdp-main.active {
+    left: 300px;
+  }
+}
+
+/*# sourceMappingURL=style.css.map */
