@@ -1,1 +1,0 @@
-{"version":3,"file":"help.js","mappings":";;;;AAAAA,OAAO,CAACC,GAAG,CAAC,MAAM,CAAC,C","sources":["webpack://my-react-admin/./source/help/help.js"],"sourcesContent":["console.log('help');\n"],"names":["console","log"],"sourceRoot":""}

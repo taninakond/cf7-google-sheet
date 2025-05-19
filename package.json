@@ -3,12 +3,13 @@
   "version": "1.0.0",
   "scripts": {
     "watch-dashboard": "wp-scripts start --config webpack.dashboard.config.js",
-    "build-dashboard": "wp-scripts build --webpack-src-dir=source/dashboard --output-path=assets/js/dashboard/ --config webpack.dashboardBuild.config.js",
+    "build-dashboard": "wp-scripts build --config webpack.dashboardBuild.config.js",
     "watch-sass": "sass --watch source/assets/sass:assets/css",
     "build-sass": "sass source/assets/sass:assets/css",
     "build-postcss": "postcss assets/css/*.css --use autoprefixer cssnano -d assets/css --no-map",
+    "clean-dist": "find . \\( -name \"*.map\" -o -name \".DS_Store\" \\) -type f -delete",
     "start": "concurrently \"npm:watch-*\"",
-    "build": "concurrently \"npm:build-*\""
+    "build": "concurrently \"npm:build-*\" \"npm:clean-dist\""
   },
   "dependencies": {
     "@wordpress/components": "^23.0.0",

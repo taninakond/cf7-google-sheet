@@ -9,7 +9,7 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
 
 const entries = Object.fromEntries(
-  glob.sync('./source/*/*.js', { cwd: __dirname }).map((file) => [
+  glob.sync('./source/**/*.js', { cwd: __dirname }).map((file) => [
     path.basename(file, '.js'),
     path.resolve(__dirname, file),
   ])
