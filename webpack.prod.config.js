@@ -33,7 +33,7 @@ export default {
     ...(defaultConfig.plugins || []),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, "source/assets/images"), to: path.resolve(__dirname, "build/assets/images") },
+        { from: path.resolve(__dirname, "source/assets/images"), to: path.resolve(__dirname, "assets/images") },
         { from: path.resolve(__dirname, "assets"), to: path.resolve(__dirname, "build/assets") },
         { from: path.resolve(__dirname, "core"), to: path.resolve(__dirname, "build/core") },
         { from: path.resolve(__dirname, "includes"), to: path.resolve(__dirname, "build/includes") },
