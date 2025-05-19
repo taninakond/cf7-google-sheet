@@ -1,4 +1,5 @@
 import defaultConfig from '@wordpress/scripts/config/webpack.config.js';
+import CopyPlugin from 'copy-webpack-plugin';
 
 import path from 'path';
 import { glob } from 'glob';
@@ -15,12 +16,28 @@ const entries = Object.fromEntries(
   ])
 );
 
+const isProduction = process.env.NODE_ENV === 'production';
+
 export default {
   ...defaultConfig,
   entry: entries,
-  mode: 'development',
+  mode: isProduction ? 'production' : 'development',
+  externals: {
+        sweetalert2: 'window.Swal'
+    },
   output: {
     path: path.resolve(__dirname, 'assets/js/'),
     filename: '[name].js',
   },
+  plugins: [
+    ...(defaultConfig.plugins || []),
+    new CopyPlugin({
+      patterns: [
+        { from: path.resolve(__dirname, "source/assets/images"), to: path.resolve(__dirname, "assets/images") },
+      ],
+      options: {
+        concurrency: 100,
+      }
+    }),
+  ],
 };
