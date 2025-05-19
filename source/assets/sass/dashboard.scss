@@ -7,6 +7,10 @@
     --bdp-navbar-width: 250px;
 }
 
+#wpcontent:has(.bdpcgs-toplevel-wrapper) {
+    padding-left: 0;
+}
+
 .toplevel_page_my-react-admin div#wpcontent {
     padding-left: 0;
 }
@@ -545,7 +549,6 @@
     }
 }
 
-/* responsive */
 @media (max-width: 991px) {
     .bdp-container {
         .bdp-navigation {

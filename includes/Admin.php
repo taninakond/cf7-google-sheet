@@ -25,6 +25,9 @@ class Admin {
     }
 
     public function dashboard() {
+        wp_enqueue_script('bdpcgs-dashboard');
+        wp_enqueue_style('bdpcgs-dashboard');
+        
         printf('<div id="bdpcgs-dashboard" class="bdpcgs-dashboard bdpcgs-toplevel-wrapper"><h1>%s</h1></div>', __('CF7 Google Sheet', 'cf7-google-sheet'));
     }
 }
