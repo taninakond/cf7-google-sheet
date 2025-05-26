@@ -26,6 +26,8 @@ class BDPlugins
         add_filter('plugin_row_meta', [$this, 'pluginRowMeta'], 10, 2);
 
         add_filter('plugin_action_links_' . plugin_basename(BDPCGS_FILE), [$this, 'actionLinks']);
+        add_action('rest_api_init', [RestAPI::class, 'registerRoutes']);
+
     }
 
     public function pluginRowMeta($links, $file)

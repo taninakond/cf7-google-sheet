@@ -13,8 +13,8 @@ class Enqueue {
     }
 
     public function adminScripts() {
-        $this->rstyle('dashboard');
-        $this->rscript('dashboard');
+        $this->rStyle('dashboard');
+        $this->rScript('dashboard');
     }
 
     private function script($handle, $deps = [], $args = []) {
@@ -69,12 +69,12 @@ class Enqueue {
         }       
     }
 
-    private function rstyle($handle, $deps = [], $args = []) {
+    private function rStyle($handle, $deps = [], $args = []) {
         $args['type'] = 'register';
         $this->style($handle, $deps, $args);
     }
 
-    private function rscript($handle, $deps = [], $args = []) {
+    private function rScript($handle, $deps = [], $args = []) {
         $args['type'] = 'register';
         $this->script($handle, $deps, $args);
     }
