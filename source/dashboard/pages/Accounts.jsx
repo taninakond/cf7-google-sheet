@@ -1,11 +1,11 @@
 import Section from '../components/Section'
 import Switch from '../components/Switch'
-import __ from '@wordpress/i18n'
+import { __ } from '@wordpress/i18n'
 
 const Accounts = () => {
     const handleChange = (value) => {
-		console.log(value);
-	}
+        console.log(value);
+    }
     return (
         <div className="bdp-content-box">
             <Section title={__('Authorization Type', 'cf7-google-sheet')}>

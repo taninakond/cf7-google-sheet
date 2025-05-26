@@ -2,6 +2,7 @@
   "name": "my-react-admin",
   "version": "1.0.0",
   "scripts": {
+    "dev:admin": "webpack serve --config webpack.admin.config.js",
     "watch-dev": "wp-scripts start --config webpack.dev.config.js",
     "build-prod": "wp-scripts build --config webpack.prod.config.js",
     "watch-sass": "sass --watch source/assets/sass:assets/css",

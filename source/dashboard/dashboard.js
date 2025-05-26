@@ -1,5 +1,6 @@
 import { createRoot } from '@wordpress/element';
 import App from './App';
+import '../assets/sass/dashboard.scss';
 
 
 window.addEventListener('DOMContentLoaded', () => {
