@@ -35,7 +35,6 @@ export default {
       'Access-Control-Allow-Origin': '*',
     },
     hot: true,
-    liveReload: true,
   },
   plugins: [
     ...(defaultConfig.plugins || []),

@@ -28,6 +28,8 @@ class Enqueue
             'ver' => BDPCGS_VERSION,
             'in_footer' => true,
             'type' => 'enqueue',
+            'dev_port' => 5175,
+            'dev_deps' => ['react', 'react-jsx-runtime', 'wp-element', 'wp-i18n'],
         ];
 
         $args = wp_parse_args($args, $defaultArgs);
@@ -38,25 +40,22 @@ class Enqueue
         if (file_exists($assetsPath)) {
             $assets = require_once $assetsPath;
             $deps = wp_parse_args($deps, $assets['dependencies']);
-            if (defined('WP_ENVIRONMENT_TYPE') && (WP_ENVIRONMENT_TYPE === 'development' || WP_ENVIRONMENT_TYPE === 'local')) {
-                $args['ver'] = $assets['version'];
-
-            }
         }
 
         $srcPath = BDPCGS_DIR . '/assets/js/' . $handle . '.js';
-        $src = BDPCGS_DIR .'/assets/js/'. $handle . '.js';
+        $src = BDPCGS_ASSETS .'/assets/js/'. $handle . '.js';
 
 
-
-        if (!file_exists($srcPath)) {
-            $src = 'http://localhost:5175/' . $handle . '.js';
+        if (defined('WP_ENVIRONMENT_TYPE') && (WP_ENVIRONMENT_TYPE === 'development' || WP_ENVIRONMENT_TYPE === 'local')) {
+            $args['ver'] = $assets['version'] ?? BDPCGS_VERSION;
+            $src = "http://localhost:$args[dev_port]/$handle.js";
+            $deps = wp_parse_args($deps, $args['dev_deps']);
         }
 
         if ($args['type'] === 'register') {
-            wp_register_script('bdpcgs-'.$handle, $src, $deps, $args['ver'], $args['in_footer']);
+            wp_register_script("bdpcgs-$handle", $src, $deps, $args['ver'], $args['in_footer']);
         } elseif ($args['type'] === 'enqueue') {
-            wp_enqueue_script('bdpcgs-'.$handle, $src, $deps, $args['ver'], $args['in_footer']);
+            wp_enqueue_script("bdpcgs-$handle", $src, $deps, $args['ver'], $args['in_footer']);
         }
     }
 
@@ -67,23 +66,22 @@ class Enqueue
             'in_footer' => false,
             'type' => 'enqueue',
             'media' => 'all',
+            'dev_port' => 5175,
         ];
 
         $src = BDPCGS_ASSETS . '/css/' . $handle . '.css';
 
         if (defined('WP_ENVIRONMENT_TYPE') && (WP_ENVIRONMENT_TYPE === 'development' || WP_ENVIRONMENT_TYPE === 'local')) {
-            $src = 'http://localhost:5175/' . $handle . '.css';
+            $src = "http://localhost:$args[dev_port]/$handle.css";
+            $args['ver'] = time();
         }
 
         $args = wp_parse_args($args, $defaultArgs);
 
-        $srcPath = BDPCGS_DIR . '/assets/css/' . $handle . '.css';
-        if (file_exists($srcPath)) {
-            if ($args['type'] === 'register') {
-                wp_register_style('bdpcgs-'.$handle, $src, $deps, $args['ver'], $args['media']);
-            } elseif ($args['type'] === 'enqueue') {
-                wp_enqueue_style('bdpcgs-'.$handle, $src, $deps, $args['ver'], $args['media']);
-            }
+        if ($args['type'] === 'register') {
+            wp_register_style("bdpcgs-$handle", $src, $deps, $args['ver'], $args['media']);
+        } elseif ($args['type'] === 'enqueue') {
+            wp_enqueue_style("bdpcgs-$handle", $src, $deps, $args['ver'], $args['media']);
         }
     }
 

@@ -16,7 +16,7 @@ const Dashboard = () => {
 
 	return (
 		<div className="bdp-content-box">
-			<Section title="Dashboard">
+			<Section title="Dashboard settings">
 				<Switch id="autoSave" label="Auto Save" onChange={handleChange} />
 				<div className="bdp-section-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A vel, placeat nam facilis aliquid magnam facere consequatur voluptatibus itaque. Doloribus?</div>
 			</Section>
