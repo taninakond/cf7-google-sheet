@@ -24,6 +24,7 @@
     "glob": "^11.0.2",
     "postcss": "^8.5.3",
     "postcss-cli": "^11.0.1",
+    "rtlcss-webpack-plugin": "^4.0.7",
     "sweetalert2": "^11.6.13"
   }
 }

@@ -1,0 +1,22 @@
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/placeholders' as *;
+
+.card {
+    @extend %card; // base card styles from placeholder
+    background-color: $color-white;
+    border: 1px solid $color-border;
+    box-shadow: $box-shadow-sm;
+    padding: $space-lg;
+    border-radius: $radius-md;
+    transition: box-shadow 0.3s ease;
+
+    &:hover {
+        box-shadow: $box-shadow-md;
+    }
+
+    // Optional responsive tweaks
+    @include respond-down($breakpoint-sm) {
+        padding: $space-md;
+    }
+}

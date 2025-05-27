@@ -1,0 +1,58 @@
+@use "sass:math";
+// ----------------------------------------------
+// 🎨 Color Utilities
+// ----------------------------------------------
+
+// Darken or lighten by a percentage
+@function tint($color, $percent) {
+    @return mix(white, $color, $percent);
+}
+
+@function shade($color, $percent) {
+    @return mix(black, $color, $percent);
+}
+
+// Choose black/white based on contrast
+@function contrast-color($color, $dark: #000000, $light: #ffffff) {
+    @if (lightness($color) > 50) {
+        @return $dark;
+    }
+
+    @else {
+        @return $light;
+    }
+}
+
+// Add alpha to hex or RGB color
+@function rgba-color($color, $alpha: 0.5) {
+    @return rgba(red($color), green($color), blue($color), $alpha);
+}
+
+// ----------------------------------------------
+// 📏 Unit Conversion
+// ----------------------------------------------
+
+@function rem($px, $base: 16) {
+  @return math.div($px, $base) * 1rem;
+}
+
+@function em($px, $base: 16) {
+    @return math.div($px / $base) * 1em;
+}
+
+// ----------------------------------------------
+// 🔠 Responsive Type Scale
+// ----------------------------------------------
+@function fluid-type($min-size, $max-size, $min-vw: 320, $max-vw: 1200) {
+    $min-size-rem: rem($min-size);
+    $max-size-rem: rem($max-size);
+    @return calc(#{$min-size-rem} + (#{$max-size-rem} - #{$min-size-rem}) * ((100vw - #{$min-vw}px) / (#{$max-vw} - #{$min-vw})));
+}
+
+// ----------------------------------------------
+// 🔲 Spacing Multiplier
+// ----------------------------------------------
+@function space($step) {
+    $base: 8px;
+    @return $step * $base;
+}

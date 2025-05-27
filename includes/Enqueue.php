@@ -43,7 +43,7 @@ class Enqueue
         }
 
         $srcPath = BDPCGS_DIR . '/assets/js/' . $handle . '.js';
-        $src = BDPCGS_ASSETS .'/assets/js/'. $handle . '.js';
+        $src = BDPCGS_ASSETS .'/js/'. $handle . '.js';
 
 
         if (defined('WP_ENVIRONMENT_TYPE') && (WP_ENVIRONMENT_TYPE === 'development' || WP_ENVIRONMENT_TYPE === 'local')) {
@@ -69,14 +69,14 @@ class Enqueue
             'dev_port' => 5175,
         ];
 
+        $args = wp_parse_args($args, $defaultArgs);
+
         $src = BDPCGS_ASSETS . '/css/' . $handle . '.css';
 
         if (defined('WP_ENVIRONMENT_TYPE') && (WP_ENVIRONMENT_TYPE === 'development' || WP_ENVIRONMENT_TYPE === 'local')) {
             $src = "http://localhost:$args[dev_port]/$handle.css";
             $args['ver'] = time();
         }
-
-        $args = wp_parse_args($args, $defaultArgs);
 
         if ($args['type'] === 'register') {
             wp_register_style("bdpcgs-$handle", $src, $deps, $args['ver'], $args['media']);

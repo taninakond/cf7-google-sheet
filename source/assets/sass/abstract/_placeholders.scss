@@ -1,0 +1,95 @@
+@use 'variables' as vars;
+// ----------------------------------------------
+// 📦 Layout
+// ----------------------------------------------
+%container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: vars.$space-md;
+    padding-right: vars.$space-md;
+    max-width: 1200px;
+}
+
+%section-padding {
+    padding-top: vars.$space-xl;
+    padding-bottom: vars.$space-xl;
+}
+
+// ----------------------------------------------
+// 🎨 Utility Classes
+// ----------------------------------------------
+%text-center {
+    text-align: center;
+}
+
+%text-uppercase {
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+%clearfix {
+    &::after {
+        content: "";
+        display: table;
+        clear: both;
+    }
+}
+
+// ----------------------------------------------
+// 🔲 Card / Panel Styles
+// ----------------------------------------------
+%card {
+    background-color: vars.$color-white;
+    border: 1px solid vars.$color-border;
+    border-radius: vars.$radius-md;
+    box-shadow: vars.$box-shadow-sm;
+    padding: vars.$space-lg;
+}
+
+// ----------------------------------------------
+// 🔘 Button Base
+// ----------------------------------------------
+%button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-size: vars.$font-size-sm;
+    font-weight: vars.$font-weight-medium;
+    border: none;
+    border-radius: vars.$radius-sm;
+    padding: vars.$space-sm vars.$space-md;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:disabled {
+        opacity: 0.6;
+        pointer-events: none;
+    }
+}
+
+// ----------------------------------------------
+// 🧲 Flex Utilities
+// ----------------------------------------------
+%flex-center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+%flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// ----------------------------------------------
+// ♿ Visually Hidden (Accessibility)
+// ----------------------------------------------
+%visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}

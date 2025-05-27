@@ -1,0 +1,11 @@
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+@use '../abstract/functions' as *;
+@use '../abstract/placeholders' as *;
+
+.button {
+    @extend %button-base;
+    background-color: $color-primary;
+    font-size: rem(14);
+    @include flex-center;
+}

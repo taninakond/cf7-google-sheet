@@ -1,0 +1,203 @@
+@use 'variables' as *;
+@use "sass:color";
+
+// ----------------------------------------------
+// 📱 Responsive Media Query
+// ----------------------------------------------
+@mixin respond-up($breakpoint) {
+    @media (min-width: $breakpoint) {
+        @content;
+    }
+}
+
+@mixin respond-down($breakpoint) {
+    @media (max-width: $breakpoint) {
+        @content;
+    }
+}
+
+// ----------------------------------------------
+// 🧱 Spacing Utilities
+// ----------------------------------------------
+@mixin spacing($property, $size) {
+    #{$property}: $size;
+}
+
+// Usage: @include spacing(margin, $space-md);
+
+// ----------------------------------------------
+// 🧲 Flexbox Utilities
+// ----------------------------------------------
+@mixin flex-center($justify: center, $align: center) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+
+@mixin flex-between {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@mixin flex-column {
+    display: flex;
+    flex-direction: column;
+}
+
+// ----------------------------------------------
+// ✏️ Typography
+// ----------------------------------------------
+@mixin font-size($size) {
+    font-size: $size;
+}
+
+@mixin font($family: $font-family-sans, $weight: $font-weight-regular) {
+    font-family: $family;
+    font-weight: $weight;
+}
+
+// ----------------------------------------------
+// 🔳 Border Radius + Box Shadow
+// ----------------------------------------------
+@mixin radius($size: $radius-md) {
+    border-radius: $size;
+}
+
+@mixin shadow($size: md) {
+    @if $size ==sm {
+        box-shadow: $box-shadow-sm;
+    }
+
+    @else if $size ==md {
+        box-shadow: $box-shadow-md;
+    }
+
+    @else if $size ==lg {
+        box-shadow: $box-shadow-lg;
+    }
+}
+
+// ----------------------------------------------
+// 🎨 Gradient Background
+// ----------------------------------------------
+@mixin gradient($from, $to, $direction: to right) {
+    background: linear-gradient($direction, $from, $to);
+}
+
+// ----------------------------------------------
+// ✂️ Text Truncation
+// ----------------------------------------------
+@mixin truncate($lines: 1) {
+    @if $lines ==1 {
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    @else {
+        display: -webkit-box;
+        -webkit-line-clamp: $lines;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+    }
+}
+
+// ----------------------------------------------
+// 🌀 Transition
+// ----------------------------------------------
+@mixin transition($props: all, $time: 0.3s, $ease: ease-in-out) {
+    transition: $props $time $ease;
+}
+
+// ----------------------------------------------
+// 🎯 Absolute Centering
+// ----------------------------------------------
+@mixin absolute-center {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+// ----------------------------------------------
+// 📷 Retina Image Support
+// ----------------------------------------------
+@mixin retina-image($filename, $ext: 'png') {
+    background-image: url('#{$filename}.#{$ext}');
+
+    @media (-webkit-min-device-pixel-ratio: 2),
+    (min-resolution: 192dpi) {
+        background-image: url('#{$filename}@2x.#{$ext}');
+    }
+}
+
+// ----------------------------------------------
+// ♿ Visually Hidden (Accessibility)
+// ----------------------------------------------
+@mixin visually-hidden {
+    position: absolute !important;
+    height: 1px;
+    width: 1px;
+    overflow: hidden;
+    clip: rect(1px, 1px, 1px, 1px);
+    white-space: nowrap;
+}
+
+@mixin button-base {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: 600;
+    border: none;
+    border-radius: $radius-md;
+    padding: $space-sm $space-md;
+    cursor: pointer;
+    transition: all 0.2s ease-in-out;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &:focus {
+        outline: none;
+        box-shadow: 0 0 0 2px rgba($color-primary, 0.3);
+    }
+}
+
+@mixin button-variant($color) {
+    background-color: color.adjust($color, $lightness: -10%);
+    background: linear-gradient(135deg, color.adjust($color-primary, $lightness: 10%), color.adjust($color-secondary, $lightness: 10%));
+
+    color: #fff;
+    border: none;
+    padding: $space-xs $space-md;
+    border-radius: $radius-md;
+    cursor: pointer;
+    transition: background-color 0.3s;
+
+    &:hover {
+        background-color: color.adjust($color, $lightness: -10%);
+        background: linear-gradient(135deg, color.adjust($color-primary, $lightness: 10%), color.adjust($color-secondary, $lightness: 10%));
+
+    }
+}
+
+@mixin gradient-button($color) {
+    background-color: color.adjust($color, $lightness: -10%);
+    background: linear-gradient(135deg, color.adjust($color-primary, $lightness: 10%), color.adjust($color-secondary, $lightness: 10%));
+    color: $color-white;
+    border: none;
+    padding: $space-xs $space-md;
+    border-radius: $radius-md;
+    cursor: pointer;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: background 0.3s ease;
+
+    &:hover {
+        background-color: color.adjust($color, $lightness: -10%);
+        background: linear-gradient(135deg, color.adjust($color-primary, $lightness: 10%), color.adjust($color-secondary, $lightness: 10%));
+
+    }
+}

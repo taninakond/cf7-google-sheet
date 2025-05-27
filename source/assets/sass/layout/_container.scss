@@ -1,0 +1,27 @@
+@use '../abstract/variables' as *;
+@use '../abstract/mixins' as *;
+
+.container {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: $space-md;
+    padding-right: $space-md;
+
+    // Max widths for different breakpoints
+    @include respond-up($breakpoint-sm) {
+        max-width: 720px;
+    }
+
+    @include respond-up($breakpoint-md) {
+        max-width: 960px;
+    }
+
+    @include respond-up($breakpoint-lg) {
+        max-width: 1140px;
+    }
+
+    @include respond-up($breakpoint-xl) {
+        max-width: 1320px;
+    }
+}

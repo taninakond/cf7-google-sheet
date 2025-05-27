@@ -1,5 +1,7 @@
 import defaultConfig from '@wordpress/scripts/config/webpack.config.js';
 import CopyPlugin from 'copy-webpack-plugin';
+import MiniCssExtractPlugin from 'mini-css-extract-plugin';
+import RtlCssPlugin from 'rtlcss-webpack-plugin';
 
 import path from 'path';
 import { glob } from 'glob';
@@ -23,21 +25,30 @@ export default {
   entry: entries,
   mode: isProduction ? 'production' : 'development',
   externals: {
-        sweetalert2: 'window.Swal'
-    },
+    sweetalert2: 'window.Swal',
+  },
   output: {
     path: path.resolve(__dirname, 'assets/js/'),
     filename: '[name].js',
   },
   plugins: [
     ...(defaultConfig.plugins || []),
+    new MiniCssExtractPlugin({
+      filename: ({ chunk }) => path.join('..', 'css', `${chunk.name}.css`),
+    }),
+    new RtlCssPlugin({
+      filename: ({ chunk }) => path.join('..', 'css', `${chunk.name}-rtl.css`),
+    }),
     new CopyPlugin({
       patterns: [
-        { from: path.resolve(__dirname, "source/assets/images"), to: path.resolve(__dirname, "assets/images") },
+        {
+          from: path.resolve(__dirname, 'source/assets/images'),
+          to: path.resolve(__dirname, 'assets/images'),
+        },
       ],
       options: {
         concurrency: 100,
-      }
+      },
     }),
   ],
 };

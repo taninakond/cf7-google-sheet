@@ -1,0 +1,228 @@
+@use "abstract/variables" as *;
+@use "abstract/mixins" as *;
+@use "abstract/functions" as *;
+@use "abstract/placeholders" as *;
+
+:root {
+  --bdp-primary: #{$color-primary};
+  --bdp-white: #{$color-white};
+  --bdp-gray: #{$color-gray-light};
+  --bdp-black1: #{$color-black};
+  --bdp-black2: #{$color-gray-dark};
+  --bdp-navbar-width: #{$navbar-width};
+}
+
+#wpcontent:has(.bdpcgs-toplevel-wrapper),
+.toplevel_page_my-react-admin div#wpcontent {
+  padding-left: 0;
+}
+
+.folded .bdp-container {
+  width: calc(100% - rem(36));
+}
+
+.bdp-container {
+  position: fixed;
+  width: calc(100% - rem(160));
+  height: calc(100vh - rem(32));
+  top: rem(32);
+
+  * {
+    box-sizing: border-box;
+  }
+
+  .bdp-button {
+    @include button-base;
+
+    &.bdp-button-primary {
+      @include button-variant($color-primary);
+    }
+
+    &.bdp-button-secondary {
+      @include button-variant($color-gray-light);
+    }
+
+    &.bdp-button-danger {
+      @include button-variant($color-danger);
+    }
+
+    &.bdp-button-success {
+      @include button-variant($color-success);
+    }
+
+    &.bdp-button-warning {
+      @include button-variant($color-warning);
+    }
+
+    &.bdp-button-info {
+      @include button-variant($color-info);
+    }
+
+    &.bdp-button-link {
+      background: transparent;
+      color: $color-primary;
+      text-decoration: underline;
+    }
+
+    &.bdp-button-disabled {
+      background: $color-gray-light;
+      color: $color-gray-dark;
+      cursor: not-allowed;
+
+      &:hover {
+        background: $color-gray-light;
+      }
+    }
+
+    &.bdp-button-gradient {
+      @include gradient-button($color-primary);
+
+      &[disabled] {
+        opacity: 0.5;
+        background-color: $color-dark;
+        color: $color-white;
+        cursor: not-allowed;
+      }
+    }
+  }
+
+  .bdp-switch,
+  .bdp-select-wrapper,
+  .bdp-input-wrapper {
+    display: flex;
+    align-items: center;
+    gap: $space-sm;
+
+    label {
+      font-weight: 600;
+      color: $color-black;
+    }
+  }
+
+  .bdp-input,
+  .bdp-select {
+    width: 100%;
+    padding: $space-xs $space-md;
+    border: none;
+    border-radius: $radius-md;
+    background: $color-gray-light;
+    box-shadow: inset 6px 6px 12px #c3c8d1, inset -6px -6px 12px #ffffff;
+    font-size: rem(16);
+    color: $color-black;
+    transition: 0.2s;
+
+    &.bdp-input-textarea {
+      min-height: rem(100);
+    }
+  }
+
+  .bdp-navigation {
+    position: fixed;
+    width: $navbar-width;
+    height: 100%;
+    background: $color-primary;
+    transition: 0.5s;
+    overflow: hidden;
+
+    &.active {
+      width: rem(80);
+    }
+
+    ul {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      margin-top: 0;
+
+      li {
+        position: relative;
+        width: 100%;
+        list-style: none;
+        border-top-left-radius: $radius-lg;
+        border-bottom-left-radius: $radius-lg;
+        display: flex;
+        color: $color-black;
+        cursor: pointer;
+
+        &.active,
+        &:hover {
+          background-color: $color-gray-light;
+
+          svg {
+            fill: $color-primary;
+          }
+        }
+
+        .bdp-title {
+          font-size: rem(18);
+          font-weight: 700;
+        }
+      }
+    }
+  }
+
+  .bdp-main {
+    position: absolute;
+    left: $navbar-width;
+    background: $color-primary;
+    transition: 0.5s;
+    width: calc(100% - $navbar-width);
+    height: calc(100vh - rem(32));
+
+    &.active {
+      width: calc(100% - rem(80));
+      left: rem(80);
+    }
+
+    .bdp-topbar {
+      @include flex-center;
+      height: rem(60);
+      background: $color-primary;
+      padding-right: $space-lg;
+
+      .bdp-page-title {
+        font-size: rem(24);
+        font-weight: 700;
+      }
+    }
+
+    .bdp-content {
+      position: relative;
+      padding: $space-lg;
+      height: calc(100% - rem(80));
+      background: $color-gray-light;
+      border-radius: $radius-xl;
+
+      .bdp-section-wrapper {
+        padding: $space-lg;
+
+        .bdp-section {
+          @extend %card;
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 991px) {
+  .bdp-container {
+    .bdp-navigation {
+      left: -300px;
+
+      &.active {
+        width: rem(300);
+        left: 0;
+      }
+    }
+
+    .bdp-main {
+      width: 100%;
+      left: 0;
+
+      &.active {
+        left: rem(300);
+      }
+    }
+  }
+}
