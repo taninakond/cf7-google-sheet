@@ -13,7 +13,8 @@ class BDPlugins
         $this->init();
     }
 
-    private function init() {
+    private function init()
+    {
         register_activation_hook(BDPCGS_FILE, [Activation::class, 'active']);
         register_activation_hook(BDPCGS_FILE, [Deactivation::class, 'inactive']);
 
@@ -22,7 +23,8 @@ class BDPlugins
         Enqueue::getInstance();
     }
 
-    private function doHooks(){
+    private function doHooks()
+    {
         add_filter('plugin_row_meta', [$this, 'pluginRowMeta'], 10, 2);
 
         add_filter('plugin_action_links_' . plugin_basename(BDPCGS_FILE), [$this, 'actionLinks']);
