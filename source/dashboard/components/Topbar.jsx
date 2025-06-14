@@ -1,3 +1,4 @@
+import { updateSettings } from '../../api';
 import Button from './Button';
 
 const Topbar = ({ active, setActive, page }) => {
@@ -8,7 +9,13 @@ const Topbar = ({ active, setActive, page }) => {
     }
 
     function handleSaveChange() {
-        console.log('handleSaveChange');
+        updateSettings(window.bdpcgs.settings, true)
+            .then(response => {
+                window.bdpcgs.settings = response;
+            })
+            .catch(error => {
+                console.error('Error updating settings:', error);
+            });
     }
 
     function handleToggle() {

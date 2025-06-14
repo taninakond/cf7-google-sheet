@@ -6,7 +6,7 @@ const Select = ({ id, label, value, options, onChange }) => {
 
     const handleChange = (value) => {
         setValue(value);
-        onChange(value);
+        onChange({value, target: id});
     }
 
     return (

@@ -34,7 +34,12 @@ export const getSettings = async () => {
     }
 }
 
-export const updateSettings = async (settings) => {
+export const updateSettings = async (settings, saveChanges = false) => {
+    if(!window.bdpcgs.settings.auto_save && !saveChanges) {
+        const updatedSettings = { ...window.bdpcgs.settings, ...settings };
+        return updatedSettings;
+    }
+
     try {
         const response = await api.post('/settings', settings);
         return response.data;

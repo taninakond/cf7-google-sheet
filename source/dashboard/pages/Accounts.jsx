@@ -7,12 +7,13 @@ const Accounts = () => {
 
     const handleChange = (event) => {
         updateSettings({ [event.target]: event.value })
-        .then(response => {
-            window.bdpcgs.settings = response;
-        }).catch(error => {
-            console.error('Error updating settings:', error);
-        });
-        
+            .then(response => {
+                window.bdpcgs.settings = response;
+            }).catch(error => {
+                console.error('Error updating settings:', error);
+            });
+
+
     }
     return (
         <div className="bdp-content-box">

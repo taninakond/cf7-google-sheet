@@ -78,5 +78,8 @@ if (!defined('BDPCGS_SETTINGS_VALIDATION_KEYS')) {
         'one_click_authorization' => 'bool',
         'auto_save' => 'bool',
         'debug' => 'bool',
+        'theme' => 'key',
+        'theme1' => 'text',
+        'theme2' => 'text',
     ]);
 }
