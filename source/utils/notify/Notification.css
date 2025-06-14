@@ -5,7 +5,7 @@
     width: 400px;
     background-color: #222;
     color: #fff;
-    padding: 14px 20px !important;
+    padding: 14px 20px;
     border-radius: 6px;
     box-shadow: 0 5px 15px #000000c2;
     z-index: 9999;
@@ -16,44 +16,44 @@
     border-left: 6px solid transparent;
 }
 
-.bdpcgs-notification.confirm {
+.bdpcgs-notification.bdpcgs-notification-confirm {
     flex-direction: column;
     align-items: flex-start;
 }
 
-.bdpcgs-notification.success {
+.bdpcgs-notification.bdpcgs-notification-success {
     background-color: #2e7d32;
     border-left-color: #66bb6a;
 }
 
-.bdpcgs-notification.warning {
+.bdpcgs-notification.bdpcgs-notification-warning {
     background-color: #f57c00;
     border-left-color: #ffb74d;
 }
 
-.bdpcgs-notification.danger,
-.bdpcgs-notification.error {
+.bdpcgs-notification.bdpcgs-notification-danger,
+.bdpcgs-notification.bdpcgs-notification-error {
     background-color: #c62828;
     border-left-color: #ef5350;
 }
 
-.bdpcgs-notification.info {
+.bdpcgs-notification.bdpcgs-notification-info {
     background-color: #0277bd;
     border-left-color: #4fc3f7;
 }
 
-.bdpcgs-notification.progress {
+.bdpcgs-notification.bdpcgs-notification-progress {
     background-color: #455a64;
     border-left-color: #90a4ae;
 }
 
-.bdpcgs-notification .buttons {
+.bdpcgs-notification .bdpcgs-notification-buttons {
     margin-top: 12px;
     display: flex;
     gap: 10px;
 }
 
-.bdpcgs-notification .confirm {
+.bdpcgs-notification .bdpcgs-notification-confirm {
     background-color: #4caf50;
     color: white;
     border: none;
@@ -62,7 +62,7 @@
     cursor: pointer;
 }
 
-.bdpcgs-notification .cancel {
+.bdpcgs-notification .bdpcgs-notification-cancel {
     background-color: #f44336;
     color: white;
     border: none;
@@ -71,7 +71,7 @@
     cursor: pointer;
 }
 
-.bdpcgs-notification button:not(.confirm):not(.cancel) {
+.bdpcgs-notification button:not(.bdpcgs-notification-confirm):not(.bdpcgs-notification-cancel) {
     background: none;
     border: none;
     color: #fff;
@@ -83,7 +83,7 @@
 @keyframes fadeIn {
     from {
         opacity: 0;
-        transform: translateY(-15px);
+        transform: translateY(-30px);
     }
 
     to {

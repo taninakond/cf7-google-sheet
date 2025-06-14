@@ -23,7 +23,8 @@ class Admin
             'manage_options',
             'cf7-google-sheet',
             [$this, 'dashboard'],
-            BDPCGS_ASSETS . '/images/icon.png'
+            BDPCGS_ASSETS . '/images/g-sheet.svg',
+            20
         );
     }
 

@@ -5,7 +5,7 @@ import Dashboard from './pages/Dashboard';
 import Help from './pages/Help';
 import Settings from './pages/Settings';
 import Accounts from './pages/Accounts';
-import GlobalNotification from '../utils/GlobalNotification';
+import GlobalNotification from '../utils/notify/GlobalNotification';
 const App = () => {
 
     const [page, setPage] = useState(localStorage.getItem('bdp_page') || 'dashboard');
