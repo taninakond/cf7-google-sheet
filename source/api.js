@@ -35,7 +35,8 @@ export const getSettings = async () => {
 }
 
 export const updateSettings = async (settings, saveChanges = false) => {
-    if(!window.bdpcgs.settings.auto_save && !saveChanges) {
+
+    if(!window.bdpcgs.settings.auto_save && !saveChanges && settings.auto_save === undefined ){
         const updatedSettings = { ...window.bdpcgs.settings, ...settings };
         return updatedSettings;
     }
