@@ -1,6 +1,8 @@
 
 //const tabbarItems = [{ name: 'Dashboard', id: 'dashboard' }, { name: 'Settings', id: 'settings' }, { name: 'Help', id: 'help' }];
-import { updateSettings } from '../../api';
+import { __ } from '@wordpress/i18n';
+import { updateSettings } from '../../utils/api';
+import { notify } from '../../utils/notify';
 import Input from '../components/Input';
 import Section from '../components/Section';
 import Select from '../components/Select';
@@ -11,14 +13,33 @@ const Dashboard = () => {
 
 
 
-	const handleChange = (event) => {
-		updateSettings({ [event.target]: event.value })
-			.then(response => {
-				window.bdpcgs.settings = response;
-			}).catch(error => {
-				console.error('Error updating settings:', error);
+	const handleChange = async (event) => {
+
+		const key = event.target;
+		const value = event.value;
+
+		try {
+			const response = await updateSettings({ [key]: value });
+			window.bdpcgs.settings = response;
+
+			if (window.bdpcgs.settings.auto_save) {
+				notify({
+					message: __('Settings updated successfully', 'cf7-google-sheet'),
+					type: 'success',
+				});
+			}
+
+			return true;
+		} catch (error) {
+			console.error('Error updating settings:', error);
+			notify({
+				message: __('Failed to update settings', 'cf7-google-sheet'),
+				type: 'error',
 			});
-	}
+			return;
+		}
+	};
+
 
 	return (
 		<div className="bdp-content-box">

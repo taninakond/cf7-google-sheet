@@ -1,0 +1,93 @@
+.bdpcgs-notification {
+    position: fixed;
+    top: 35px;
+    left: calc(50% - 200px);
+    width: 400px;
+    background-color: #222;
+    color: #fff;
+    padding: 14px 20px !important;
+    border-radius: 6px;
+    box-shadow: 0 5px 15px #000000c2;
+    z-index: 9999;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    animation: fadeIn 0.3s ease;
+    border-left: 6px solid transparent;
+}
+
+.bdpcgs-notification.confirm {
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.bdpcgs-notification.success {
+    background-color: #2e7d32;
+    border-left-color: #66bb6a;
+}
+
+.bdpcgs-notification.warning {
+    background-color: #f57c00;
+    border-left-color: #ffb74d;
+}
+
+.bdpcgs-notification.danger,
+.bdpcgs-notification.error {
+    background-color: #c62828;
+    border-left-color: #ef5350;
+}
+
+.bdpcgs-notification.info {
+    background-color: #0277bd;
+    border-left-color: #4fc3f7;
+}
+
+.bdpcgs-notification.progress {
+    background-color: #455a64;
+    border-left-color: #90a4ae;
+}
+
+.bdpcgs-notification .buttons {
+    margin-top: 12px;
+    display: flex;
+    gap: 10px;
+}
+
+.bdpcgs-notification .confirm {
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bdpcgs-notification .cancel {
+    background-color: #f44336;
+    color: white;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.bdpcgs-notification button:not(.confirm):not(.cancel) {
+    background: none;
+    border: none;
+    color: #fff;
+    font-size: 18px;
+    cursor: pointer;
+    margin-left: auto;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-15px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}

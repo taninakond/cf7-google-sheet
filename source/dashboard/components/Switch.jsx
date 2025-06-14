@@ -4,9 +4,12 @@ const SwitchButton = ({ id, checked, onChange }) => {
 
     const [isChecked, setChecked] = useState(checked || false);
 
-    const handleChange = (value) => {
-        setChecked(value);
-        onChange({ value, target: id });
+    const handleChange = async (value) => {
+        const result = await onChange({ value, target: id });
+        if(result) {
+            setChecked(value);
+        }
+        
     }
 
     return (

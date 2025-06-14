@@ -1,4 +1,6 @@
-import { updateSettings } from '../../api';
+import { __ } from '@wordpress/i18n';
+import { updateSettings } from '../../utils/api';
+import { notify } from '../../utils/notify';
 import Button from './Button';
 
 const Topbar = ({ active, setActive, page }) => {
@@ -8,14 +10,21 @@ const Topbar = ({ active, setActive, page }) => {
         return page.charAt(0).toUpperCase() + page.slice(1);
     }
 
-    function handleSaveChange() {
-        updateSettings(window.bdpcgs.settings, true)
-            .then(response => {
-                window.bdpcgs.settings = response;
-            })
-            .catch(error => {
-                console.error('Error updating settings:', error);
-            });
+    async function handleSaveChange() {
+        const settings = window.bdpcgs.settings || {};
+
+        try {
+            const result = await updateSettings(window.bdpcgs.settings, true);
+            if (result) {
+                window.bdpcgs.settings = result;
+            }
+            notify(__('Settings updated successfully', 'cf7-google-sheet'));
+            return true;
+        } catch (error) {
+            console.error(__('Error updating settings:', 'cf7-google-sheet'), error);
+            notify(__('Failed to update settings', 'cf7-google-sheet'));
+            return;
+        }
     }
 
     function handleToggle() {
