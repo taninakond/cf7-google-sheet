@@ -11,10 +11,15 @@ const Topbar = ({ active, setActive, page }) => {
         console.log('handleSaveChange');
     }
 
+    function handleToggle() {
+        setActive(!active);
+        localStorage.setItem('bdpcgs_sidebar_collapse', !active);
+    }
+
     return (
         <div className="bdp-topbar">
             <div className="bdp-topbar-left">
-                <div onClick={() => setActive(!active)} className="bdp-toggle">
+                <div onClick={() => handleToggle(!active)} className="bdp-toggle">
                     {active ? (
                         <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" fill="#1f1f1f"><path d="M360-120v-720h80v720h-80Zm160-160v-400l200 200-200 200Z" /></svg>
                     ) : (

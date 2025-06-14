@@ -8,7 +8,7 @@ import Accounts from './pages/Accounts';
 const App = () => {
 
     const [page, setPage] = useState(localStorage.getItem('bdp_page') || 'dashboard');
-    const [active, setActive] = useState(false);
+    const [active, setActive] = useState(localStorage.getItem('bdpcgs_sidebar_collapse') === 'true' || false);
 
     const handlePage = (page) => {
         setPage(page);
