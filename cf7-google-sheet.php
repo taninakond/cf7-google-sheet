@@ -1,4 +1,5 @@
 <?php
+
 namespace bdplugins;
 
 use BDPlugins\CF7GoogleSheet\BDPlugins;
@@ -17,10 +18,13 @@ use BDPlugins\CF7GoogleSheet\Utils\Autoload;
  * Domain Path:         /languages/
 **/
 
-if (!defined('ABSPATH')) exit;
+if (!defined('ABSPATH')) {
+    exit;
+}
 
-if(! function_exists('bdpcgs')) {
-    function bdpcgs() {
+if (! function_exists('bdpcgs')) {
+    function bdpcgs()
+    {
 
         if (!defined('BDPCGS_FILE')) {
             define('BDPCGS_FILE', __FILE__);
@@ -34,12 +38,7 @@ if(! function_exists('bdpcgs')) {
         ];
 
         foreach ($includeFiles as $fileName => $filePath) {
-            $includeFile = $filePath . '/' . $fileName . '.php';
-            ob_start();
-            echo '<pre>';
-            var_dump( $includeFile, file_exists($includeFile) );
-            echo '</pre>';
-            error_log( ob_get_clean() );
+            $includeFile = "$filePath/$fileName.php";
             if (file_exists($includeFile)) {
                 require_once $includeFile;
             }

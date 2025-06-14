@@ -10,8 +10,8 @@ class Settings
 
     public static function get($request)
     {
-        $key = $request->get_param("key");
-        $default = $request->get_param("default");
+        $key = sanitize_key(wp_unslash($request->get_param("key")));
+        $default = sanitize_text_field(wp_unslash($request->get_param("default")));
 
         $settings = get_option(self::OPTION_KEY, []);
 
@@ -37,8 +37,31 @@ class Settings
 
     public static function update($request)
     {
+        $validations = bdpcgs_get_settings_validation_keys();
+        $clean_data = [];
+
+        foreach ($validations as $key => $rule) {
+            if ($request->has_param($key)) {
+                $raw_value = wp_unslash($request->get_param($key));
+
+                if (is_array($rule)) {
+                    if ($rule['type'] === 'array' && isset($rule['items'])) {
+                        $clean_data[$key] = [];
+
+                        if (is_array($raw_value)) {
+                            foreach ($raw_value as $item_key => $item_value) {
+                                $clean_data[$key][$item_key] = self::sanitize_value_by_type($item_value, $rule['items']);
+                            }
+                        }
+                    }
+                } else {
+                    $clean_data[$key] = self::sanitize_value_by_type($raw_value, $rule);
+                }
+            }
+        }
+
         $settings = get_option(self::OPTION_KEY, []);
-        $data = wp_parse_args($request->get_params(), $settings);
+        $data = wp_parse_args($clean_data, $settings);
 
         update_option(self::OPTION_KEY, $data);
         return rest_ensure_response([
@@ -47,4 +70,29 @@ class Settings
         ]);
     }
 
+    private static function sanitize_value_by_type($value, $type)
+    {
+        switch ($type) {
+            case 'text':
+                return sanitize_text_field($value);
+
+            case 'int':
+                return absint($value);
+
+            case 'bool':
+                return (bool) $value;
+
+            case 'key':
+                return sanitize_key($value);
+
+            case 'array':
+                if (!is_array($value)) {
+                    return [];
+                }
+                return array_map('sanitize_text_field', $value);
+
+            default:
+                return sanitize_text_field($value);
+        }
+    }
 }

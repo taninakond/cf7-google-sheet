@@ -1,4 +1,5 @@
 <?php
+
 defined('ABSPATH') || exit;
 
 if (!defined('BDPCGS_DIR')) {
@@ -63,4 +64,18 @@ if (!defined('BDPCGS_SUPPORT_URL')) {
 
 if (!defined('BDPCGS_DOCUMENTATION_URL')) {
     define('BDPCGS_DOCUMENTATION_URL', 'https://bdplugins.com/docs/cf7-google-sheet');
+}
+
+if (!defined('BDPCGS_LICENSE')) {
+    define('BDPCGS_LICENSE', 'GPL-2.0+');
+}
+if (!defined('BDPCGS_LICENSE_URL')) {
+    define('BDPCGS_LICENSE_URL', 'https://www.gnu.org/licenses/gpl-2.0.html');
+}
+
+if (!defined('BDPCGS_SETTINGS_VALIDATION_KEYS')) {
+    define('BDPCGS_SETTINGS_VALIDATION_KEYS', [
+        'one_click_authorization' => 'bool',
+        'auto_save' => 'bool',
+    ]);
 }
