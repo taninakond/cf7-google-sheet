@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { setNotifyCallback } from './notify';
 import './Notification.css';
+import { __ } from '@wordpress/i18n';
 
 const GlobalNotification = () => {
     const [visible, setVisible] = useState(false);
@@ -55,8 +56,8 @@ const GlobalNotification = () => {
             <span>{message}</span>
             {type === 'confirm' ? (
                 <div className="buttons">
-                    <button className="confirm" onClick={handleConfirm}>Confirm</button>
-                    <button className="cancel" onClick={handleCancel}>Cancel</button>
+                    <button className="confirm" onClick={handleConfirm}>{__('Confirm', 'cf7-google-sheet')}</button>
+                    <button className="cancel" onClick={handleCancel}>{__('Cancel', 'cf7-google-sheet')}</button>
                 </div>
             ) : (
                 <button onClick={handleClose}>×</button>
