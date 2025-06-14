@@ -32,6 +32,7 @@ if (! function_exists('bdpcgs')) {
 
         // Include plugin config file;
         require_once plugin_dir_path(BDPCGS_FILE) . 'core/config.php';
+        require_once plugin_dir_path(BDPCGS_FILE) . 'core/functions.php';
 
         $includeFiles = [
             'Autoload' => BDPCGS_UTILS,

@@ -1,5 +1,6 @@
 
 //const tabbarItems = [{ name: 'Dashboard', id: 'dashboard' }, { name: 'Settings', id: 'settings' }, { name: 'Help', id: 'help' }];
+import { updateSettings } from '../../api';
 import Input from '../components/Input';
 import Section from '../components/Section';
 import Select from '../components/Select';
@@ -10,19 +11,22 @@ const Dashboard = () => {
 
 	
 
-	const handleChange = (value) => {
-		console.log(value);
-	}
+	const handleChange = (event) => {
+        updateSettings({ [event.target]: event.value })
+        window.bdpcgs.settings[event.target] = event.value
+		console.log(event);
+		
+    }
 
 	return (
 		<div className="bdp-content-box">
 			<Section title="Dashboard settings">
-				<Switch id="autoSave" label="Auto Save" onChange={handleChange} />
+				<Switch checked={window.bdpcgs.settings.auto_save} id="auto_save" label="Auto Save" onChange={handleChange} />
 				<div className="bdp-section-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A vel, placeat nam facilis aliquid magnam facere consequatur voluptatibus itaque. Doloribus?</div>
 			</Section>
 
 			<Section title="Settings">
-				<Switch id="debug" label="Debug" onChange={handleChange} />
+				<Switch checked={window.bdpcgs.settings.debug} id="debug" label="Debug" onChange={handleChange} />
 				<div className="bdp-section-description">Lorem ipsum dolor sit amet consectetur adipisicing elit. A vel, placeat nam facilis aliquid magnam facere consequatur voluptatibus itaque. Doloribus?</div>
 			</Section>
 

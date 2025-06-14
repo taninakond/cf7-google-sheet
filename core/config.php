@@ -77,5 +77,6 @@ if (!defined('BDPCGS_SETTINGS_VALIDATION_KEYS')) {
     define('BDPCGS_SETTINGS_VALIDATION_KEYS', [
         'one_click_authorization' => 'bool',
         'auto_save' => 'bool',
+        'debug' => 'bool',
     ]);
 }

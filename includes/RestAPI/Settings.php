@@ -16,23 +16,17 @@ class Settings
         $settings = get_option(self::OPTION_KEY, []);
 
         if (empty($key)) {
-            return rest_ensure_response([
-                'success' => true,
-                'data' => $settings,
-            ]);
+            return rest_ensure_response($settings);
         }
 
         if (empty($settings[$key])) {
-            return rest_ensure_response([
-                'success' => true,
-                'data' => $default,
+            return rest_ensure_response($default ?: [
+                'success' => false,
+                'message' => __('Setting not found', 'cf7-google-sheet')
             ]);
         }
 
-        return rest_ensure_response([
-            'success' => true,
-            'data' => $settings[$key] ?? $default
-        ]);
+        return rest_ensure_response($settings[$key] ?? $default);
     }
 
     public static function update($request)
@@ -64,10 +58,7 @@ class Settings
         $data = wp_parse_args($clean_data, $settings);
 
         update_option(self::OPTION_KEY, $data);
-        return rest_ensure_response([
-            'success' => true,
-            'data' => $data,
-        ]);
+        return rest_ensure_response($data);
     }
 
     private static function sanitize_value_by_type($value, $type)

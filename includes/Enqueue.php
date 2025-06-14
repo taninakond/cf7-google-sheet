@@ -2,6 +2,7 @@
 
 namespace BDPlugins\CF7GoogleSheet;
 
+use BDPlugins\CF7GoogleSheet\RestAPI\Settings;
 use BDPlugins\CF7GoogleSheet\Utils\Singleton;
 
 defined('ABSPATH') || exit;
@@ -17,7 +18,7 @@ class Enqueue
 
     public function adminScripts()
     {
-        $this->rScript('dashboard');
+        $this->rScript('dashboard', [], ['localize_script' => true]);
         $this->rStyle('dashboard');
     }
 
@@ -30,6 +31,14 @@ class Enqueue
             'type' => 'enqueue',
             'dev_port' => 5175,
             'dev_deps' => ['react', 'react-jsx-runtime', 'wp-element', 'wp-i18n'],
+            'localize' => [
+                'ajax_url' => admin_url('admin-ajax.php'),
+                'nonce' => wp_create_nonce('wp_rest'),
+                'rest_url' => rest_url('bdpcgs/v1/'),
+                'settings' => get_option(Settings::OPTION_KEY, []),
+            ],
+            'localize_script' => false,
+            'localize_script_name' => 'bdpcgs',
         ];
 
         $args = wp_parse_args($args, $defaultArgs);
@@ -56,6 +65,10 @@ class Enqueue
             wp_register_script("bdpcgs-$handle", $src, $deps, $args['ver'], $args['in_footer']);
         } elseif ($args['type'] === 'enqueue') {
             wp_enqueue_script("bdpcgs-$handle", $src, $deps, $args['ver'], $args['in_footer']);
+        }
+
+        if ($args['localize_script']) {
+            wp_localize_script("bdpcgs-$handle", $args['localize_script_name'], $args['localize']);
         }
     }
 

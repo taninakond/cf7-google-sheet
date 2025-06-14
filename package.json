@@ -16,7 +16,7 @@
     "@wordpress/components": "^23.0.0",
     "@wordpress/element": "^2.0.0",
     "@wordpress/i18n": "^2.0.0",
-    "@wordpress/scripts": "^30.7.0",
+    "@wordpress/scripts": "^30.18.0",
     "autoprefixer": "^10.4.21",
     "concurrently": "^9.1.2",
     "copy-webpack-plugin": "^13.0.0",
@@ -26,5 +26,8 @@
     "postcss-cli": "^11.0.1",
     "rtlcss-webpack-plugin": "^4.0.7",
     "sweetalert2": "^11.6.13"
+  },
+  "dependencies": {
+    "axios": "^1.9.0"
   }
 }
