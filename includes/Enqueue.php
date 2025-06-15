@@ -25,6 +25,8 @@ class Enqueue
     private function script($handle, $deps = [], $args = [])
     {
 
+        $settings = get_option(Settings::OPTION_KEY, []);
+
         $defaultArgs = [
             'ver' => BDPCGS_VERSION,
             'in_footer' => true,
@@ -35,7 +37,10 @@ class Enqueue
                 'ajax_url' => admin_url('admin-ajax.php'),
                 'nonce' => wp_create_nonce('wp_rest'),
                 'rest_url' => rest_url('bdpcgs/v1/'),
-                'settings' => get_option(Settings::OPTION_KEY, []),
+                'settings' => $settings,
+                'settingsDraft' => $settings,
+                'defaultSettings' => bdpcgs_get_settings_defaults(),
+                'changesQueue' => [],
             ],
             'localize_script' => false,
             'localize_script_name' => 'bdpcgs',

@@ -2,8 +2,25 @@ import { __ } from '@wordpress/i18n';
 import { updateSettings } from '../../utils/api';
 import { notify } from '../../utils/notify';
 import Button from './Button';
+import { useEffect, useState } from '@wordpress/element';
 
 const Topbar = ({ active, setActive, page }) => {
+    const [_changeStatus, setChangeStatus] = useState(false);
+
+    useEffect(() => {
+        const handleSettingsChange = (event) => {
+            if(event.detail.changes === 'on') {
+                setChangeStatus(true);
+            }else if(event.detail.changes === 'off') {
+                setChangeStatus(false);
+            }
+        }
+        window.addEventListener('bdpcgs:settings-changed', handleSettingsChange);
+        return () => {
+            window.removeEventListener('bdpcgs:settings-changed', handleSettingsChange);
+        };
+
+    }, []);
 
     function pageIdToTitle(page) {
         page = page.replaceAll('-', ' ');
@@ -11,10 +28,10 @@ const Topbar = ({ active, setActive, page }) => {
     }
 
     async function handleSaveChange() {
-        const settings = window.bdpcgs.settings || {};
+        const settings = window.bdpcgs.changesQueue || {};
 
         try {
-            const result = await updateSettings(window.bdpcgs.settings, true);
+            const result = await updateSettings(settings, true);
             if (result) {
                 window.bdpcgs.settings = result;
             }
@@ -32,6 +49,8 @@ const Topbar = ({ active, setActive, page }) => {
         localStorage.setItem('bdpcgs_sidebar_collapse', !active);
     }
 
+    const isActive = (_changeStatus && window.bdpcgs.changesQueue && Object.keys(window.bdpcgs.changesQueue).length) > 0; 
+
     return (
         <div className="bdp-topbar">
             <div className="bdp-topbar-left">
@@ -45,7 +64,9 @@ const Topbar = ({ active, setActive, page }) => {
                 <div className="bdp-page-title">{pageIdToTitle(page)}</div>
             </div>
             <div className="bdp-topbar-right">
-                <Button title="Save Changes" type="gradient" onClick={handleSaveChange} />
+                <Button disabled={!isActive} title="Save Changes" type="gradient" onClick={handleSaveChange}>
+                    {(_changeStatus && window.bdpcgs.changesQueue && Object.keys(window.bdpcgs.changesQueue).length > 0) && <span className="save-status"></span>}
+                </Button>
             </div>
         </div>
     )

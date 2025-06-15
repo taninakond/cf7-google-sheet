@@ -83,3 +83,14 @@ if (!defined('BDPCGS_SETTINGS_VALIDATION_KEYS')) {
         'theme2' => 'text',
     ]);
 }
+
+if (!defined('BDPCGS_SETTINGS_DEFAULTS')) {
+    define('BDPCGS_SETTINGS_DEFAULTS', [
+        'one_click_authorization' => true,
+        'auto_save' => true,
+        'debug' => false,
+        'theme' => 'default',
+        'theme1' => '',
+        'theme2' => '',
+    ]);
+}

@@ -4,6 +4,7 @@
         "BDPCGS",
         "bdplugins",
         "rscript",
-        "rstyle"
+        "rstyle",
+        "Topbar"
     ]
 }

@@ -38,11 +38,22 @@ export const updateSettings = async (settings, saveChanges = false) => {
 
     if(!window.bdpcgs.settings.auto_save && !saveChanges && settings.auto_save === undefined ){
         const updatedSettings = { ...window.bdpcgs.settings, ...settings };
+        const changesQueue = window.bdpcgs.changesQueue || {};
+        const updatedChangesQueue = { ...changesQueue, ...settings };
+        const filteredChangesQueue = Object.fromEntries(
+            Object.entries(updatedChangesQueue).filter(([key, value]) => value !== window.bdpcgs.settingsDraft[key])
+        );
+        window.bdpcgs.changesQueue = filteredChangesQueue;
+        const changesCount = Object.keys(filteredChangesQueue).length;
+
+        dispatchEvent(new CustomEvent('bdpcgs:settings-changed', { detail: {changes: changesCount > 0 ? 'on' :  'off', setting: settings} }));
         return updatedSettings;
     }
 
     try {
         const response = await api.post('/settings', settings);
+        window.bdpcgs.changesQueue = {};
+        dispatchEvent(new CustomEvent('bdpcgs:settings-changed', { detail: {changes: 'off', settings: settings} }));
         return response.data;
     } catch (error) {
         console.error('Error updating settings:', error);
